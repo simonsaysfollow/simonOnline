@@ -1,0 +1,83 @@
+.skills_learned {
+    position: relative;
+    width: 50%;
+    float: right;
+    text-align: left;
+    margin-top: 10px;
+    border: 1px solid brown;
+}
+
+
+.contain {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.skills {
+    text-align: right;
+    padding-right: 20px;
+    line-height: 20px;
+    color: blue;
+}
+
+@keyframes example {
+    from {background-color: white;}
+    to {background-color: aqua;}
+}
+
+
+
+.html {
+    width: 90%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+.css {
+    width: 80%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.python {
+    width: 70%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.java {
+    width: 60%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.cpp {
+    width: 50%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.c {
+    width: 65%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.swift {
+    width: 75%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.data {
+    width: 85%;
+    background-color: aqua;
+    animation-name: example;
+    animation-duration: 5s;
+}
