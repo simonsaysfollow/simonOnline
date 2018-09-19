@@ -6,9 +6,9 @@ top = str(top);
 index = str(index);
 bottom = str(bottom);
 
-title = "simmy"
+title = "Simon Tekeste"
 printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/pythonIndex.html", "w+");
-html_text =  "<title>" + top.replace("{{title}}","{title}") + "</title>"
+top = top.replace("{{title}}",f"{title}") 
 printingdata.write(top+"\n"+index+"\n"+bottom);
 
 printingdata.close();
