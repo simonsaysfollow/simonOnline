@@ -8,8 +8,8 @@ bottom = str(bottom);
 
 title = "simmy"
 printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/pythonIndex.html", "w+");
-printingdata.write(title)
-printingdata.write(top+index+bottom);
+html_text =  "<title>" + top.replace("{{title}}","{title}") + "</title>"
+printingdata.write(top+"\n"+index+"\n"+bottom);
 
 printingdata.close();
 
