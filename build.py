@@ -8,7 +8,7 @@ def relevancePage():
 	bottom = str(bottom);
 
 	title = "Relevance"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/relevancePythonIndex.html", "w+");
+	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/relevantIndex.html", "w+");
 	top = top.replace("{{title}}",f"{title}") 
 	printingdata.write(top+"\n"+index+"\n"+bottom);
 	printingdata.close();
@@ -23,7 +23,7 @@ def blogPage():
 	bottom = str(bottom);
 
 	title = "Blog"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/blogPythonIndex.html", "w+");
+	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/blogIndex.html", "w+");
 	top = top.replace("{{title}}",f"{title}") 
 	printingdata.write(top+"\n"+index+"\n"+bottom);
 	printingdata.close();
@@ -39,7 +39,7 @@ def indexPage():
 	bottom = str(bottom);
 
 	title = "Simon Tekeste"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/pythonIndex.html", "w+");
+	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/index.html", "w+");
 	top = top.replace("{{title}}",f"{title}") 
 	printingdata.write(top+"\n"+index+"\n"+bottom);
 	printingdata.close();
