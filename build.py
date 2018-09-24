@@ -1,53 +1,57 @@
-def relevancePage():
-	top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
-	index = open("//Users/Simonsays/Desktop/BootcampCite/content/relevantIndex.html").read();
-	bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
 
-	top = str(top);
-	index = str(index);
-	bottom = str(bottom);
+def things_i_need(top, bottom, url=[],title=[],index=[]):
+	i = 0
+	for x in url:
+	 	printingdata = open(f"/Users/Simonsays/Desktop/BootcampCite/docs/{x}", "w+")
+	 	row  = another_thing(top, i, title)
+	 	content = indexreader(i, index)
+	 	printingdata.write(f"{row}"+"\n"+f"{content}"+"\n"+bottom);
+	 	i+=1
+	 	printingdata.close();
 
-	title = "Relevance"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/relevantIndex.html", "w+");
-	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
+def another_thing(top,i, title=[]):
+	t = title[i]
 
-def blogPage():
-	top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
-	index = open("//Users/Simonsays/Desktop/BootcampCite/content/blogIndex.html").read();
-	bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
+	row = titlechange(top,t,)
+	return row
 
-	top = str(top);
-	index = str(index);
-	bottom = str(bottom);
-
-	title = "Blog"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/blogIndex.html", "w+");
-	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
+def titlechange(top, t):
+	top = top.replace("{{title}}",f"{t}") 
+	return top
 
 
-def indexPage():
-	top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
-	index = open("//Users/Simonsays/Desktop/BootcampCite/content/index.html").read();
-	bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
+def indexreader(i, index=[]):
+	content = index[i]
+	content = str(content)
+	return content
 
-	top = str(top);
-	index = str(index);
-	bottom = str(bottom);
-
-	title = "Simon Tekeste"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/index.html", "w+")
-	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
 
 def main():
-	indexPage();
-	blogPage();
-	relevancePage();
+	top = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read())
+	bottom = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read())
+
+	
+	url = [
+	 	"index.html",
+	 	"blogIndex.html",
+		"relevantIndex.html"
+	 ]
+
+	index = [
+	 	open("//Users/Simonsays/Desktop/BootcampCite/content/index.html").read(),
+	 	open("//Users/Simonsays/Desktop/BootcampCite/content/blogIndex.html").read(),
+	 	open("//Users/Simonsays/Desktop/BootcampCite/content/relevantIndex.html").read()
+	 ]
+
+	title = [
+	 	"Simon Tekeste",
+	 	"Blog",
+	 	"Relevance"
+	 ]
+
+	things_i_need(top, bottom, url, title, index)
+	 
+	print("complete")
 
 
 if __name__ == "__main__":
