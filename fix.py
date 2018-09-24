@@ -1,48 +1,37 @@
 def relevancePage(top, bottom):
-	# top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
 	index = open("//Users/Simonsays/Desktop/BootcampCite/content/relevantIndex.html").read();
-	# bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
-
-	# top = str(top);
 	index = str(index);
-	# bottom = str(bottom);
+
 
 	title = "Relevance"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/relevantIndex.html", "w+");
+	# printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/relevantIndex.html", "w+");
 	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
+	# printingdata.write(top+"\n"+index+"\n"+bottom);
+	# printingdata.close();
+	return top
 
 def blogPage(top, bottom):
-	# top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
 	index = open("//Users/Simonsays/Desktop/BootcampCite/content/blogIndex.html").read();
-	# bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
-
-	# top = str(top);
 	index = str(index);
-	# bottom = str(bottom);
 
 	title = "Blog"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/blogIndex.html", "w+");
+	# printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/blogIndex.html", "w+");
 	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
+	# printingdata.write(top+"\n"+index+"\n"+bottom);
+	# printingdata.close();
+	return top
 
 
 def indexPage(top, bottom):
-	# top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
-	index = open("//Users/Simonsays/Desktop/BootcampCite/content/index.html").read();
-	# bottom = open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read();
-
-	# top = str(top);
+	index = open(f"//Users/Simonsays/Desktop/BootcampCite/content/index.html").read();
 	index = str(index);
-	# bottom = str(bottom);
 
 	title = "Simon Tekeste"
-	printingdata = open("/Users/Simonsays/Desktop/BootcampCite/docs/index.html", "w+")
+	# printingdata = open(f"{url}", "w+")
 	top = top.replace("{{title}}",f"{title}") 
-	printingdata.write(top+"\n"+index+"\n"+bottom);
-	printingdata.close();
+	# printingdata.write(top+"\n"+index+"\n"+bottom);
+	# printingdata.close();
+	return top
 
 def main():
 	top = open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read();
@@ -50,11 +39,29 @@ def main():
 	top = str(top);
 	bottom = str(bottom);
 
+	webpage = [
+		indexPage(top, bottom),
+	 	blogPage(top, bottom),
+	 	relevancePage(top, bottom),
+	 ]
 
-	indexPage(top, bottom);
-	blogPage(top, bottom);
-	relevancePage(top, bottom);
+	url = [
+	 	"/Users/Simonsays/Desktop/BootcampCite/docs/index.html",
+	 	"/Users/Simonsays/Desktop/BootcampCite/docs/blogIndex.html",
+		"/Users/Simonsays/Desktop/BootcampCite/docs/relevantIndex.html"
+	 ]
+
+	i = 0
+
+	for x in url:
+		printingdata = open(f"{x}", "w+")
+		row = webpage[i]
+		printingdata.write(f"{row}"+"\n") #+index+"\n"+bottom);
+		i+=1
+	printingdata.close();
+
 	print("complete")
+
 
 if __name__ == "__main__":
 	main();
