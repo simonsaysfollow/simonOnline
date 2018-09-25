@@ -1,56 +1,62 @@
 
-def things_i_need(top, bottom, url=[],title=[],index=[]):
+def things_i_need(base, url=[],title=[],index=[]):
 	i = 0
 	for x in url:
-	 	printingdata = open(f"/Users/Simonsays/Desktop/BootcampCite/docs/{x}", "w+")
-	 	row  = another_thing(top, i, title)
-	 	content = indexreader(i, index)
-	 	printingdata.write(f"{row}"+"\n"+f"{content}"+"\n"+bottom);
+	 	printingdata = open(f"{x}", "w+")
+	 	row  = another_thing(base, i, title)
+	 	content_insert = indexplug(row, i, index)
+	 	printingdata.write(f"{content_insert}")
 	 	i+=1
 	 	printingdata.close();
 
-def another_thing(top,i, title=[]):
+def another_thing(base,i, title=[]):
 	t = title[i]
-
-	row = titlechange(top,t,)
+	row = base.replace("{{title}}",f"{t}")
 	return row
 
-def titlechange(top, t):
-	top = top.replace("{{title}}",f"{t}") 
-	return top
 
-
-def indexreader(i, index=[]):
-	content = index[i]
-	content = str(content)
-	return content
+def indexplug(row, i, index =[]):
+	c = index[i]
+	c = open(c).read()
+	c = str(c)
+	con = row.replace("{{content_insert}}",f"{c}")
+	return con
 
 
 def main():
-	top = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read())
-	bottom = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read())
+	base = str(open("templates/base.html").read())
 
+	url =[]
+	title =[]
+	index =[]
+
+	pages = [
+		
+		{
+			"filename":"content/index.html",
+			"output": "docs/index.html",
+			"title":"Simon Tekeste",
+		},
+		{
+			"filename":"content/blogIndex.html",
+			"output": "docs/blogIndex.html",
+			"title":"Blog",
+		},
+		{
+			"filename":"content/relevantIndex.html",
+			"output": "docs/relevantIndex.html",
+			"title":"Relevance",
+		}
+
+	]
+
+	for page in pages:
+		 index.append(page["filename"])
+		 url.append(page['output'])
+		 title.append(page["title"])
 	
-	url = [
-	 	"index.html",
-	 	"blogIndex.html",
-		"relevantIndex.html"
-	 ]
+	things_i_need(base, url,title,index)
 
-	index = [
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/index.html").read(),
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/blogIndex.html").read(),
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/relevantIndex.html").read()
-	 ]
-
-	title = [
-	 	"Simon Tekeste",
-	 	"Blog",
-	 	"Relevance"
-	 ]
-
-	things_i_need(top, bottom, url, title, index)
-	 
 	print("complete")
 
 
