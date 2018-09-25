@@ -27,8 +27,7 @@ def indexreader(i, index=[]):
 
 
 def main():
-	top = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read())
-	bottom = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read())
+	base = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/base.html").read())
 
 	
 	url = [
@@ -49,7 +48,7 @@ def main():
 	 	"Relevance"
 	 ]
 
-	things_i_need(top, bottom, title, index, url)
+	things_i_need(base title, index, url)
 	 
 	print("complete")
 
