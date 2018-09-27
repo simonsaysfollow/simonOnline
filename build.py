@@ -1,23 +1,20 @@
 
-def things_i_need(base, url=[],title=[],index=[]):
-	i = 0
-	for x in url:
-	 	printingdata = open(f"{x}", "w+")
-	 	row  = another_thing(base, i, title)
-	 	content_insert = indexplug(row, i, index)
-	 	printingdata.write(f"{content_insert}")
-	 	i+=1
-	 	printingdata.close();
+def writing_content(base, filename, output, title):	
+	printingdata = open(f"{output}", "w+")
+	row  = another_thing(base, title)
+	content_insert = indexplug(row,filename )
+	printingdata.write(f"{content_insert}")
+	printingdata.close();
 
-def another_thing(base,i, title=[]):
-	t = title[i]
+def another_thing(base,title):
+	t = title
 	row = base.replace("{{title}}",f"{t}")
 	return row
 
 
-def indexplug(row, i, index =[]):
-	c = index[i]
-	c = open(c).read()
+def indexplug(row,filename):
+	
+	c = open(filename).read()
 	c = str(c)
 	con = row.replace("{{content_insert}}",f"{c}")
 	return con
@@ -26,9 +23,6 @@ def indexplug(row, i, index =[]):
 def main():
 	base = str(open("templates/base.html").read())
 
-	url =[]
-	title =[]
-	index =[]
 
 	pages = [
 		
@@ -51,11 +45,10 @@ def main():
 	]
 
 	for page in pages:
-		 index.append(page["filename"])
-		 url.append(page['output'])
-		 title.append(page["title"])
-	
-	things_i_need(base, url,title,index)
+		filename = page['filename']
+		output = page['output']
+		title = page['title']
+		writing_content(base, filename, output, title)
 
 	print("complete")
 
