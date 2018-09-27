@@ -1,56 +1,55 @@
 
-def things_i_need(top, bottom, url=[],title=[],index=[]):
-	i = 0
-	for x in url:
-	 	printingdata = open(f"/Users/Simonsays/Desktop/BootcampCite/docs/{x}", "w+")
-	 	row  = another_thing(top, i, title)
-	 	content = indexreader(i, index)
-	 	printingdata.write(f"{row}"+"\n"+f"{content}"+"\n"+bottom);
-	 	i+=1
-	 	printingdata.close();
+def writing_content(base, filename, output, title):	
+	printingdata = open(f"{output}", "w+")
+	row  = another_thing(base, title)
+	content_insert = indexplug(row,filename )
+	printingdata.write(f"{content_insert}")
+	printingdata.close();
 
-def another_thing(top,i, title=[]):
-	t = title[i]
-
-	row = titlechange(top,t,)
+def another_thing(base,title):
+	t = title
+	row = base.replace("{{title}}",f"{t}")
 	return row
 
-def titlechange(top, t):
-	top = top.replace("{{title}}",f"{t}") 
-	return top
 
-
-def indexreader(i, index=[]):
-	content = index[i]
-	content = str(content)
-	return content
+def indexplug(row,filename):
+	
+	c = open(filename).read()
+	c = str(c)
+	con = row.replace("{{content_insert}}",f"{c}")
+	return con
 
 
 def main():
-	top = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/top.html").read())
-	bottom = str(open("/Users/Simonsays/Desktop/BootcampCite/templates/bottom.html").read())
+	base = str(open("templates/base.html").read())
 
-	
-	url = [
-	 	"index.html",
-	 	"blogIndex.html",
-		"relevantIndex.html"
-	 ]
 
-	index = [
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/index.html").read(),
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/blogIndex.html").read(),
-	 	open("//Users/Simonsays/Desktop/BootcampCite/content/relevantIndex.html").read()
-	 ]
+	pages = [
+		
+		{
+			"filename":"content/index.html",
+			"output": "docs/index.html",
+			"title":"Simon Tekeste",
+		},
+		{
+			"filename":"content/blogIndex.html",
+			"output": "docs/blogIndex.html",
+			"title":"Blog",
+		},
+		{
+			"filename":"content/relevantIndex.html",
+			"output": "docs/relevantIndex.html",
+			"title":"Relevance",
+		}
 
-	title = [
-	 	"Simon Tekeste",
-	 	"Blog",
-	 	"Relevance"
-	 ]
+	]
 
-	things_i_need(top, bottom, url, title, index)
-	 
+	for page in pages:
+		filename = page['filename']
+		output = page['output']
+		title = page['title']
+		writing_content(base, filename, output, title)
+
 	print("complete")
 
 
